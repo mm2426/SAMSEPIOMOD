@@ -2,9 +2,11 @@
 # Automatically-generated file. Do not edit or delete the file
 ################################################################################
 
-src\ASF\sam\drivers\pio\pio_handler.c
-
 src\ASF\sam\drivers\usart\usart.c
+
+src\rs485pdc.c
+
+src\ASF\sam\drivers\pio\pio_handler.c
 
 src\ASF\common\services\delay\sam\cycle_counter.c
 
@@ -20,11 +22,7 @@ src\ASF\sam\drivers\pio\pio.c
 
 src\ASF\sam\drivers\pmc\pmc.c
 
-src\ASF\sam\drivers\tc\tc.c
-
 src\ASF\sam\services\flash_efc\flash_efc.c
-
-src\ASF\sam\services\plc\busart_if\busart_if.c
 
 src\ASF\sam\drivers\pmc\sleep.c
 

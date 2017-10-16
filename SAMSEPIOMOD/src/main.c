@@ -28,13 +28,28 @@
 /*
  * Support and FAQ: visit <a href="http://www.atmel.com/design-support/">Atmel Support</a>
  */
+
+/** Size of the receive buffer and transmit buffer. */
+#define RS485_BUFFER_SIZE		2000
+
 #include <asf.h>
+#include "user_board.h"
+#include "conf_clock.h"
+#include "rs485pdc.h"
+
+/** RS485 buffers */
+uint8_t rs485RxBuffer[RS485_BUFFER_SIZE];
+uint8_t rs485TxBuffer[RS485_BUFFER_SIZE];
 
 int main (void)
 {
 	/* Insert system clock initialization code here (sysclk_init()). */
 	sysclk_init();
+	/* Initialize all peripherals */
+	board_init();	
 	
+	InitRs485Pdc();
+
 	while(1)	
 	{
 		

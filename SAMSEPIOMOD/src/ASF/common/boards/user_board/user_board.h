@@ -36,5 +36,16 @@
 // External oscillator startup time
 //#define BOARD_XOSC_STARTUP_US  500000
 
+/* USART0 Definitions*/
+#define PINS_USART0_PIO		PIOA
+/** USART0 pins (RXD0, TXD0 & RTS0(TXEN)) definitions, PA5,6,7. */
+#define PINS_USART0			(PIO_PA5A_RXD0 | PIO_PA6A_TXD0 | PIO_PA7A_RTS0)
+#define PINS_USART0_FLAGS	(PIO_PERIPH_A | PIO_DEFAULT)
+
+/* USART1 Definitions*/
+#define PINS_USART1_PIO		PIOA
+/** USART1 pins (RXD1, TXD1 & RTS1(TXEN)) definitions, PA21,22,24. */
+#define PINS_USART1			(PIO_PA21A_RXD1 | PIO_PA22A_TXD1 | PIO_PA24A_RTS1)
+#define PINS_USART1_FLAGS	(PIO_PERIPH_A | PIO_DEFAULT)
 
 #endif // USER_BOARD_H

@@ -127,11 +127,11 @@ src/ASF/common/boards/user_board/init.d \
  ../src/ASF/common/services/gpio/gpio.h \
  ../src/ASF/common/services/gpio/sam_gpio/sam_gpio.h \
  ../src/ASF/sam/drivers/pio/pio.h \
+ ../src/ASF/common/services/ioport/ioport.h \
+ ../src/ASF/common/services/ioport/sam/ioport_pio.h \
  ../src/ASF/common/drivers/nvm/common_nvm.h \
- ../src/ASF/sam/drivers/pdc/pdc.h \
- ../src/ASF/sam/services/plc/busart_if/busart_if.h \
- ../src/config/conf_busart_if.h ../src/ASF/sam/drivers/pmc/sleep.h \
- ../src/ASF/sam/drivers/tc/tc.h ../src/ASF/sam/drivers/usart/usart.h \
+ ../src/ASF/sam/drivers/pdc/pdc.h ../src/ASF/sam/drivers/pmc/sleep.h \
+ ../src/ASF/sam/drivers/usart/usart.h \
  ../src/ASF/sam/drivers/pio/pio_handler.h
 
 ../src/asf.h:
@@ -394,17 +394,15 @@ c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\arm\arm-gnu-toolchain\arm-no
 
 ../src/ASF/sam/drivers/pio/pio.h:
 
+../src/ASF/common/services/ioport/ioport.h:
+
+../src/ASF/common/services/ioport/sam/ioport_pio.h:
+
 ../src/ASF/common/drivers/nvm/common_nvm.h:
 
 ../src/ASF/sam/drivers/pdc/pdc.h:
 
-../src/ASF/sam/services/plc/busart_if/busart_if.h:
-
-../src/config/conf_busart_if.h:
-
 ../src/ASF/sam/drivers/pmc/sleep.h:
-
-../src/ASF/sam/drivers/tc/tc.h:
 
 ../src/ASF/sam/drivers/usart/usart.h:
 
