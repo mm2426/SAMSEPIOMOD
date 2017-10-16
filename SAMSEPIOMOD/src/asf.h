@@ -89,9 +89,6 @@
 // From module: PIO - Parallel Input/Output Controller
 #include <pio.h>
 
-// From module: PLC Buffered PDC Usart Service Interface
-#include <busart_if.h>
-
 // From module: PMC - Power Management Controller
 #include <pmc.h>
 #include <sleep.h>
@@ -101,9 +98,6 @@
 
 // From module: System Clock Control - SAM4S implementation
 #include <sysclk.h>
-
-// From module: TC - Timer Counter
-#include <tc.h>
 
 // From module: USART - Univ. Syn Async Rec/Trans
 #include <usart.h>
