@@ -42,16 +42,14 @@
 	 usart_enable_rx(RS485_USART);
 
 	 /* Configure and enable interrupt of USART. */
-	 NVIC_EnableIRQ(RS485_USART_IRQn);
-
+	 //NVIC_EnableIRQ(RS485_USART_IRQn);
+ 
 	 /* Get board USART PDC base address and enable receiver and transmitter. */
 	 rs485PdcBase = usart_get_pdc_base(RS485_USART);
 	 pdc_enable_transfer(rs485PdcBase, PERIPH_PTCR_RXTEN | PERIPH_PTCR_TXTEN);
 
-	 /* Enable receiving interrupt. */
-	 usart_enable_interrupt(RS485_USART, US_IER_ENDRX);
-	 /* Enable transmit interrupt. */
-	 usart_enable_interrupt(RS485_USART, US_IER_ENDTX);
+	 /* Enable Rx & Tx interrupts */
+	 //usart_enable_interrupt(RS485_USART, US_IER_ENDRX | US_IER_ENDTX);
  }
 
  /* USART Interrupt Handler */
@@ -59,6 +57,10 @@
  {
 	 uint32_t ul_status;
 
+	 NVIC_ClearPendingIRQ(RS485_USART_IRQn);
+	 
+	 pdc_read_status(rs485PdcBase);
+	 
 	 /* Read USART status. */
 	 ul_status = usart_get_status(RS485_USART);
 

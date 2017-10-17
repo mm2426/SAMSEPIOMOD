@@ -38,8 +38,8 @@
 #include "rs485pdc.h"
 
 /** RS485 buffers */
-uint8_t rs485RxBuffer[RS485_BUFFER_SIZE];
-uint8_t rs485TxBuffer[RS485_BUFFER_SIZE];
+uint32_t rs485RxBuffer[RS485_BUFFER_SIZE];
+uint32_t rs485TxBuffer[RS485_BUFFER_SIZE];
 
 int main (void)
 {
@@ -49,9 +49,16 @@ int main (void)
 	board_init();	
 	
 	InitRs485Pdc();
+	gpio_configure_pin(PIO_PC23_IDX, (PIO_OUTPUT_1 | PIO_DEFAULT));
+
+	rs485TxBuffer[0] = 'M';
+
+	Rs485PdcStartRx(rs485RxBuffer, 1);
+	Rs485PdcStartTx(rs485TxBuffer, 1);
 
 	while(1)	
 	{
-		
+		gpio_toggle_pin(PIO_PC23_IDX);
+		delay_ms(1000);
 	}
 }

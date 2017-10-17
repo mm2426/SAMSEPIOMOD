@@ -12,12 +12,12 @@
 #define CONF_BOARD_H
 
 //Use USART0 for RS485 communication
-#define CONF_UART0_PINS		1
-#define RS485_USART			USART0
-#define RS485_USART_ID		ID_USART0
+#define CONF_UART1_PINS		1
+#define RS485_USART			USART1
+#define RS485_USART_ID		ID_USART1
 #define RS485_BAUDRATE		9600
-#define RS485_USART_Handler	USART0_Handler
-#define RS485_USART_IRQn	USART0_IRQn
+#define RS485_USART_Handler	USART1_Handler
+#define RS485_USART_IRQn	USART1_IRQn
 
 
 #endif // CONF_BOARD_H
