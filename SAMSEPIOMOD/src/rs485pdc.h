@@ -16,18 +16,25 @@
 #include "gpio.h"
 #include "ioport.h"
 
+/* Size of the receive buffer and transmit buffer. */
+#define RS485_BUFFER_SIZE		35
+
+#ifndef RS485_BUFFER_SIZE
+	#error "RS485_BUFFER_SIZE Undefined"
+#endif
+
 /* Initialize the PDC Module */
 void InitRs485Pdc(void);
 /* Set pointers and start transmitting */
-void Rs485PdcStartTx(uint32_t *buff, uint16_t nBytes);
+void Rs485PdcStartTx(uint32_t buff, uint16_t nBytes);
 /* Set pointers and start receiving */
-void Rs485PdcStartRx(uint32_t *buff, uint16_t nBytes);
+void Rs485PdcStartRx(uint32_t buff, uint16_t nBytes);
 /* Returns number of bytes in Rx buffer */
-uint32_t Rs485GetRxBytes(void);
+uint32_t Rs485PdcGetRxBytes(void);
 /* Returns 1 if Rx complete interrupt has occurred */
 uint8_t Rs485PdcGetRxStatus(void);
 /* Returns 1 if Tx Buffer is empty */
-uint8_t Rs485PdcGetTxStatus(void);
+uint32_t Rs485PdcGetTxStatus(void);
 
 
 #endif /* __RS485PDC_H__ */

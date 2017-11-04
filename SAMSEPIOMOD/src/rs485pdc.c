@@ -12,8 +12,8 @@
  /* Pointer to PDC register base. */
  Pdc *rs485PdcBase;
 
- volatile uint8_t txDone = 1;
- volatile uint8_t rxDone = 1;
+ //volatile uint8_t txDone = 1;
+ //volatile uint8_t rxDone = 1;
 
  void InitRs485Pdc(void)
  {
@@ -34,13 +34,14 @@
 	 usart_init_rs485(RS485_USART, &usart_console_settings,
 	 sysclk_get_peripheral_hz());
 
+
 	 /* Disable all the interrupts. */
 	 usart_disable_interrupt(RS485_USART, 0xFFFFFFFF);
 
 	 /* Enable TX & RX function. */
 	 usart_enable_tx(RS485_USART);
 	 usart_enable_rx(RS485_USART);
-
+ 	 
 	 /* Configure and enable interrupt of USART. */
 	 //NVIC_EnableIRQ(RS485_USART_IRQn);
  
@@ -57,45 +58,49 @@
  {
 	 uint32_t ul_status;
 
-	 NVIC_ClearPendingIRQ(RS485_USART_IRQn);
-	 
-	 pdc_read_status(rs485PdcBase);
-	 
 	 /* Read USART status. */
 	 ul_status = usart_get_status(RS485_USART);
 
 	 if(ul_status & US_CSR_ENDRX)
 	 {
-		rxDone = 1;
+		//rxDone = 1;
+		usart_disable_interrupt(RS485_USART, US_IDR_ENDRX);
 	 }
 	 else if(ul_status & US_CSR_ENDTX)
 	 {
-		txDone = 1;
+		//txDone = 1;
+		usart_disable_interrupt(RS485_USART, US_IDR_ENDTX);
 	 }
 }
 
  /* Set pointers and start transmitting */
- void Rs485PdcStartTx(uint32_t *buff, uint16_t nBytes)
+ void Rs485PdcStartTx(uint32_t buff, uint16_t nBytes)
  {
-	rs485PdcPkt.ul_addr = (uint32_t) buff;
+	rs485PdcPkt.ul_addr = buff;
 	rs485PdcPkt.ul_size = nBytes;
 	pdc_tx_init(rs485PdcBase, &rs485PdcPkt, NULL);
-	txDone = 0;
+	//txDone = 0;
  }
 
  /* Set pointers and start receiving */
- void Rs485PdcStartRx(uint32_t *buff, uint16_t nBytes)
+ void Rs485PdcStartRx(uint32_t buff, uint16_t nBytes)
  {
-	rs485PdcPkt.ul_addr = (uint32_t) buff;
+	rs485PdcPkt.ul_addr = buff;
 	rs485PdcPkt.ul_size = nBytes;
 	pdc_rx_init(rs485PdcBase, &rs485PdcPkt, NULL);
-	rxDone = 0;
+	//rxDone = 0;
  }
  
  /* Returns number of bytes in Rx buffer */
- uint32_t Rs485GetRxBytes(void)
+ uint32_t Rs485PdcGetRxBytes(void)
  {
-	return 0;
+	uint32_t recvdBytes = RS485_BUFFER_SIZE;
+	recvdBytes -= pdc_read_rx_counter(rs485PdcBase);
+	if(recvdBytes>RS485_BUFFER_SIZE)//If overflow occurred. 
+	{
+		recvdBytes = 0;
+	}
+	return recvdBytes;
  }
 
  /* Ret Val = 1 If Rx complete int received
@@ -103,11 +108,11 @@
 	Else Returns 0 */
  uint8_t Rs485PdcGetRxStatus(void)
  {
-	return rxDone;
+	return (usart_get_status(RS485_USART)&US_CSR_ENDRX);
  }
 
  /* Returns 1 if Tx Buffer is empty else 0 */
- uint8_t Rs485PdcGetTxStatus(void)
+ uint32_t Rs485PdcGetTxStatus(void)
  {
-	return txDone;
+	return (usart_get_status(RS485_USART)&US_CSR_ENDTX);
  }

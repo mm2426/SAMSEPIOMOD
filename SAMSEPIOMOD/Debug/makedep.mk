@@ -4,6 +4,8 @@
 
 src\ASF\sam\drivers\usart\usart.c
 
+src\mbusStack.c
+
 src\rs485pdc.c
 
 src\ASF\sam\drivers\pio\pio_handler.c

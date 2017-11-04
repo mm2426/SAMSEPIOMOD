@@ -92,6 +92,7 @@ SUBDIRS :=  \
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS +=  \
 ../src/ASF/sam/drivers/usart/usart.c \
+../src/mbusStack.c \
 ../src/rs485pdc.c \
 ../src/ASF/sam/drivers/pio/pio_handler.c \
 ../src/ASF/common/services/delay/sam/cycle_counter.c \
@@ -119,6 +120,7 @@ ASM_SRCS +=
 
 OBJS +=  \
 src/ASF/sam/drivers/usart/usart.o \
+src/mbusStack.o \
 src/rs485pdc.o \
 src/ASF/sam/drivers/pio/pio_handler.o \
 src/ASF/common/services/delay/sam/cycle_counter.o \
@@ -139,6 +141,7 @@ src/main.o
 
 OBJS_AS_ARGS +=  \
 src/ASF/sam/drivers/usart/usart.o \
+src/mbusStack.o \
 src/rs485pdc.o \
 src/ASF/sam/drivers/pio/pio_handler.o \
 src/ASF/common/services/delay/sam/cycle_counter.o \
@@ -159,6 +162,7 @@ src/main.o
 
 C_DEPS +=  \
 src/ASF/sam/drivers/usart/usart.d \
+src/mbusStack.d \
 src/rs485pdc.d \
 src/ASF/sam/drivers/pio/pio_handler.d \
 src/ASF/common/services/delay/sam/cycle_counter.d \
@@ -179,6 +183,7 @@ src/main.d
 
 C_DEPS_AS_ARGS +=  \
 src/ASF/sam/drivers/usart/usart.d \
+src/mbusStack.d \
 src/rs485pdc.d \
 src/ASF/sam/drivers/pio/pio_handler.d \
 src/ASF/common/services/delay/sam/cycle_counter.d \
@@ -212,6 +217,8 @@ LINKER_SCRIPT_DEP+=  \
 
 
 # AVR32/GNU C Compiler
+
+
 
 
 

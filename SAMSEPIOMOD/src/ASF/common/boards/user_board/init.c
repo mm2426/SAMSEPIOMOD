@@ -39,7 +39,7 @@ void board_init(void)
 	 #else
 		gpio_configure_group(PINS_USART1_PIO, PINS_USART1, PINS_USART1_FLAGS);
 	 #endif
-	 
+
 	 //Configure other services. 
 }
 
