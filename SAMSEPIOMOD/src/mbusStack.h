@@ -30,7 +30,7 @@
 extern void (*writeFunc)(uint16_t *mbusBuff, uint8_t regAddr, uint8_t len);
 
 /* Modbus stack parser function */
-void parseMbusPkt(uint8_t slaveAddr, uint8_t *buff, uint8_t len, uint8_t *respBuff, uint8_t *respLen);
+void ParseMbusPkt(uint8_t slaveAddr, uint8_t *buff, uint8_t len, uint8_t *respBuff, uint8_t *respLen);
 
 uint16_t calcCRC(uint8_t *buff, uint8_t len);
 

@@ -2,9 +2,13 @@
 # Automatically-generated file. Do not edit or delete the file
 ################################################################################
 
+src\ASF\sam\drivers\twi\twi.c
+
 src\ASF\sam\drivers\usart\usart.c
 
 src\mbusStack.c
+
+src\mcp3425.c
 
 src\rs485pdc.c
 
