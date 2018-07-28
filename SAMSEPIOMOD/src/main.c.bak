@@ -67,7 +67,7 @@
 #include "mcp3425.h"
 
 //MODBUS Register Values
-extern uint16_t mBusRegs[MBUS_MAX_REGS];
+extern uint16_t mBusRegs[];
 extern Pdc *rs485PdcBase;
 pdc_packet_t pdcPkt;
 
@@ -118,7 +118,7 @@ int main (void)
 	{
 		recvdBytes = Rs485PdcGetRxBytes();
 		/* Check if data received on 485 */
-        switch(commState)
+		switch(commState)
         {
             case 0:
                 if(recvdBytes!=0)
@@ -160,7 +160,6 @@ int main (void)
 		ReadDigitalIn();
 		/* Update analog input regs */
 		ReadAnalogIn();
-		delay_ms(5);
 	}
 }
 
@@ -208,22 +207,6 @@ void WriteMbusRegs(uint16_t *mbusBuff, uint8_t regAddr, uint8_t len)
 		{
 			case MBUS_REG_DO1:
 				//Write digital output on pins
-				if(BIT_IS_SET(mBusRegs[MBUS_REG_DO1], 0))
-				{
-					gpio_set_pin_high(PIN_RLY1_IDX);
-				}
-				else
-				{
-					gpio_set_pin_low(PIN_RLY1_IDX);
-				}
-				if(BIT_IS_SET(mBusRegs[MBUS_REG_DO1], 1))
-				{
-					gpio_set_pin_high(PIN_RLY2_IDX);
-				}
-				else
-				{
-					gpio_set_pin_low(PIN_RLY2_IDX);
-				}
 				break;
 			default:
 				break;
